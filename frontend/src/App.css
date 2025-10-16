@@ -80,3 +80,10 @@
 .pokemon-link {
   text-decoration: none; /* Elimina el subrayado del enlace */
 }
+
+.search-instructions {
+  display: flex;
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
