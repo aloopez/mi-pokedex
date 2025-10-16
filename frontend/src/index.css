@@ -1,7 +1,7 @@
 /* frontend/src/index.css */
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif; /* ¡Nuestra nueva fuente! */
+  font-family: 'Poppins', sans-serif; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
