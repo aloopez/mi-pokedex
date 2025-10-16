@@ -3,10 +3,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-// --- ¡NUEVO! Importamos las herramientas del router ---
+// Importamos las herramientas del router ---
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-// --- ¡NUEVO! Creamos un componente para la página de detalle ---
+// Creamos un componente para la página de detalle ---
 // Por ahora, será solo un texto simple.
 function PokemonDetalle() {
   return <h2>Aquí van los detalles del Pokémon</h2>;
@@ -14,7 +14,7 @@ function PokemonDetalle() {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    {/* --- ¡NUEVO! Envolvemos todo en el BrowserRouter --- */}
+    {/*Envolvemos todo en el BrowserRouter --- */}
     <BrowserRouter>
       <Routes>
         {/* Ruta principal: Muestra la lista de Pokémon */}

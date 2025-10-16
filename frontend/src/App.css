@@ -1,4 +1,4 @@
-/* frontend/src/App.css */
+
 .App {
   padding: 2rem;
   background: linear-gradient(to top right, #f5f7fa 0%, #023a24 100%);
@@ -21,7 +21,7 @@
   padding: 15px 20px;
   font-size: 1.1rem;
   font-family: 'Poppins', sans-serif;
-  border-radius: 50px; /* ¡Bordes redondeados! */
+  border-radius: 50px; /* Bordes redondeados */
   border: 1px solid #dcdcdc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: all 0.2s ease-in-out;

@@ -4,7 +4,7 @@ import cors from 'cors';
 import axios from 'axios'; // Importamos axios
 
 const app = express();
-const PORT = 3002; // Usaremos un puerto diferente para no chocar
+const PORT = 3002; 
 
 app.use(cors()); // Habilitamos CORS para todas las rutas
 
