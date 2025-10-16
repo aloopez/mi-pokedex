@@ -21,11 +21,13 @@ function App() {
 
   const pokemonesFiltrados = pokemones.filter((poke) => {
     const id = poke.url.split("/")[6];
+    const pokemonIdNumber = parseInt(id, 10);
+
     const coincideNombre = busqueda
       ? poke.name.toLowerCase().includes(busqueda.toLowerCase())
       : true;
-    const coincideId = busquedaNumero
-      ? id.includes(String(busquedaNumero))
+    const coincideId = busquedaNumero > 0
+      ? pokemonIdNumber === busquedaNumero
       : true;
     return coincideNombre && coincideId;
   });
