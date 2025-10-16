@@ -5,7 +5,6 @@ import './App.css';
 function App() {
   const [pokemones, setPokemones] = useState([]);
   const [busqueda, setBusqueda] = useState('');
-  // -- AÑADIDO PARA MISIÓN 2 --
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
@@ -13,7 +12,6 @@ function App() {
       const res = await fetch('http://localhost:3002/pokemon');
       const data = await res.json();
       setPokemones(data.results);
-      // -- AÑADIDO PARA MISIÓN 2 --
       setCargando(false); // La carga terminó, lo ponemos en false
     };
 
@@ -34,13 +32,12 @@ function App() {
         onChange={(e) => setBusqueda(e.target.value)} 
       />
 
-      {/* -- LÓGICA MODIFICADA PARA MISIÓN 2 -- */}
       {cargando ? (
         <p>Cargando Pokémon...</p>
       ) : (
         <div className="pokedex-grid">
           {pokemonesFiltrados.map(pokemon => {
-            // --- ¡AÑADIDO PARA MISIÓN 1! ---
+            // Extraemos el ID del Pokémon de la URL
             const pokemonId = pokemon.url.split('/')[6];
 
             return (
