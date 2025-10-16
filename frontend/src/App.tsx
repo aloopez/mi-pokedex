@@ -1,26 +1,25 @@
-// frontend/src/App.tsx
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 
 function App() {
   const [pokemones, setPokemones] = useState([]);
   const [busqueda, setBusqueda] = useState('');
+  // -- AÑADIDO PARA MISIÓN 2 --
+  const [cargando, setCargando] = useState(true);
 
-  // useEffect se ejecuta una vez cuando el componente carga
   useEffect(() => {
     const obtenerPokemones = async () => {
-      // Le pedimos los datos a NUESTRO backend
       const res = await fetch('http://localhost:3002/pokemon');
       const data = await res.json();
-
-      // La API nos da un objeto { results: [...] }, extraemos la lista
-      setPokemones(data.results); 
+      setPokemones(data.results);
+      // -- AÑADIDO PARA MISIÓN 2 --
+      setCargando(false); // La carga terminó, lo ponemos en false
     };
 
     obtenerPokemones();
-  }, []); // El array vacío asegura que solo se ejecute una vez
+  }, []);
 
-  // Filtramos la lista de Pokémon en base a la búsqueda
   const pokemonesFiltrados = pokemones.filter(poke => 
     poke.name.toLowerCase().includes(busqueda.toLowerCase())
   );
@@ -32,24 +31,34 @@ function App() {
         type="text"
         placeholder="Buscar Pokémon..."
         className="search-bar"
-        // Cada vez que escribes, actualizamos el estado 'busqueda'
         onChange={(e) => setBusqueda(e.target.value)} 
       />
-      <div className="pokedex-grid">
-        {pokemonesFiltrados.map(pokemon => {
-          const pokemonId = pokemon.url.split('/')[6]; // Extraemos el ID del Pokémon de la URL
-          return (
-            <div className="pokemon-card" key={pokemon.name}>
-              {/* La API no nos da la imagen directamente, pero podemos construir la URL */}
-              <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`}
-                alt={pokemon.name}
-              />
-              <p>{pokemon.name}</p>
-            </div>
-          );
-        })}
-      </div>
+
+      {/* -- LÓGICA MODIFICADA PARA MISIÓN 2 -- */}
+      {cargando ? (
+        <p>Cargando Pokémon...</p>
+      ) : (
+        <div className="pokedex-grid">
+          {pokemonesFiltrados.map(pokemon => {
+            // --- ¡AÑADIDO PARA MISIÓN 1! ---
+            const pokemonId = pokemon.url.split('/')[6];
+
+            return (
+              <Link to={`/pokemon/${pokemon.name}`} key={pokemon.name} className="pokemon-link">
+              <div className="pokemon-card" key={pokemon.name}>
+                {/* Mostramos el ID que acabamos de extraer */}
+                <p className="pokemon-id">#{pokemonId}</p> 
+                <img 
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`} 
+                  alt={pokemon.name} 
+                />
+                <p>{pokemon.name}</p>
+              </div>
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

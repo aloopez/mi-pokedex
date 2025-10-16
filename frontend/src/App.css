@@ -1,41 +1,82 @@
 /* frontend/src/App.css */
 .App {
-  text-align: center;
-  padding: 20px;
-  background-color: #f0f0f0;
+  padding: 2rem;
+  background: linear-gradient(to top right, #f5f7fa 0%, #023a24 100%);
   min-height: 100vh;
+  box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
+}
+
+.App h1 {
+  color: #334;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .search-bar {
-  width: 80%;
-  max-width: 400px;
-  padding: 10px;
-  font-size: 1.2em;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  display: block;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto 2rem auto;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 50px; /* ¡Bordes redondeados! */
+  border: 1px solid #dcdcdc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease-in-out;
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #88a5d6;
+  box-shadow: 0 4px 15px rgba(136, 165, 214, 0.4);
 }
 
 .pokedex-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto; /* Centra la cuadrícula */
 }
 
 .pokemon-card {
   background-color: white;
-  border-radius: 10px;
-  padding: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
-  text-transform: capitalize;
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  text-align: center;
+  cursor: pointer;
 }
 
 .pokemon-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px); /* Se eleva un poco */
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
 }
 
 .pokemon-card img {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 0.5rem;
+}
+
+.pokemon-card p {
+  margin: 0;
+  color: #334;
+  font-weight: 600; /* Letra un poco más gruesa */
+  text-transform: capitalize;
+  font-size: 1.1rem;
+}
+
+.pokemon-id {
+  font-weight: 400; /* Letra normal */
+  color: #8899a6;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.pokemon-link {
+  text-decoration: none; /* Elimina el subrayado del enlace */
 }
