@@ -46,6 +46,7 @@ function App() {
           type="number"
           min={1}
           step={1}
+          max={151}
           placeholder="Buscar Pokémon por ID..."
           className="search-bar"
           onChange={(e) => {
