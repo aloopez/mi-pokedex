@@ -9,27 +9,31 @@ function App() {
   const [cargando, setCargando] = useState(true);
   const [tipo, setTipo] = useState("");
 
-  useEffect(() => {
-    const obtenerPokemones = async () => {
+  const obtenerPokemones = async () => {
+      setCargando(true); // Iniciamos la carga
       const res = await fetch("http://localhost:3002/pokemon");
       const data = await res.json();
       setPokemones(data.results);
       setCargando(false); // La carga terminó, lo ponemos en false
     };
 
+  useEffect(() => {
     obtenerPokemones();
   }, []);
 
   useEffect(() => {
     const obtenerPokemonesPorTipo = async () => {
-      if (tipo) {
+      setCargando(true); // Iniciamos la carga
         const res = await fetch(`http://localhost:3002/pokemon/tipo/${tipo}`);
         const data = await res.json();
-        setPokemones(data.results);
-      }
+        setPokemones(data.pokemonesTransformados);
+        setCargando(false); // La carga terminó, lo ponemos en false
+      };
+    if (tipo) {
+      obtenerPokemonesPorTipo();
+    } else {
+      obtenerPokemones();
     };
-
-    obtenerPokemonesPorTipo();
   }, [tipo]);
 
   const pokemonesFiltrados = pokemones.filter((poke) => {
@@ -69,14 +73,14 @@ function App() {
         />
         <select className="type-filter" onChange={(e) => setTipo(e.target.value)}>
           <option value="">Seleccionar tipo</option>
-          <option value="fire">Fuego</option>
-          <option value="water">Agua</option>
-          <option value="grass">Planta</option>
-          <option value="electric">Eléctrico</option>
-          <option value="ice">Hielo</option>
-          <option value="fighting">Lucha</option>
-          <option value="poison">Veneno</option>
-          <option value="ground">Tierra</option>
+          <option value="fire">fire</option>
+          <option value="water">water</option>
+          <option value="grass">grass</option>
+          <option value="electric">electric</option>
+          <option value="ice">ice</option>
+          <option value="fighting">fighting</option>
+          <option value="poison">poison</option>
+          <option value="ground">ground</option>
           {/* Agrega más opciones según sea necesario */}
         </select>
       </div>
