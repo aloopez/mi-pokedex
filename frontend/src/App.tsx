@@ -7,6 +7,7 @@ function App() {
   const [busqueda, setBusqueda] = useState("");
   const [busquedaNumero, setBusquedaNumero] = useState(0);
   const [cargando, setCargando] = useState(true);
+  const [tipo, setTipo] = useState("");
 
   useEffect(() => {
     const obtenerPokemones = async () => {
@@ -18,6 +19,18 @@ function App() {
 
     obtenerPokemones();
   }, []);
+
+  useEffect(() => {
+    const obtenerPokemonesPorTipo = async () => {
+      if (tipo) {
+        const res = await fetch(`http://localhost:3002/pokemon/tipo/${tipo}`);
+        const data = await res.json();
+        setPokemones(data.results);
+      }
+    };
+
+    obtenerPokemonesPorTipo();
+  }, [tipo]);
 
   const pokemonesFiltrados = pokemones.filter((poke) => {
     const id = poke.url.split("/")[6];
@@ -54,6 +67,18 @@ function App() {
             setBusquedaNumero(Number.isNaN(val) ? 0 : val);
           }}
         />
+        <select className="type-filter" onChange={(e) => setTipo(e.target.value)}>
+          <option value="">Seleccionar tipo</option>
+          <option value="fire">Fuego</option>
+          <option value="water">Agua</option>
+          <option value="grass">Planta</option>
+          <option value="electric">Eléctrico</option>
+          <option value="ice">Hielo</option>
+          <option value="fighting">Lucha</option>
+          <option value="poison">Veneno</option>
+          <option value="ground">Tierra</option>
+          {/* Agrega más opciones según sea necesario */}
+        </select>
       </div>
 
       {cargando ? (
