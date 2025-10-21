@@ -39,6 +39,7 @@ function App() {
   const pokemonesFiltrados = pokemones.filter((poke) => {
     const id = poke.url.split("/")[6];
     const pokemonIdNumber = parseInt(id, 10);
+    const esDePrimeraGeneracion = pokemonIdNumber >= 1 && pokemonIdNumber <= 151;
 
     const coincideNombre = busqueda
       ? poke.name.toLowerCase().includes(busqueda.toLowerCase())
@@ -46,7 +47,7 @@ function App() {
     const coincideId = busquedaNumero > 0
       ? pokemonIdNumber === busquedaNumero
       : true;
-    return coincideNombre && coincideId;
+    return coincideNombre && coincideId && esDePrimeraGeneracion;
   });
 
   return (
@@ -73,14 +74,14 @@ function App() {
         />
         <select className="type-filter" onChange={(e) => setTipo(e.target.value)}>
           <option value="">Seleccionar tipo</option>
-          <option value="fire">fire</option>
-          <option value="water">water</option>
-          <option value="grass">grass</option>
-          <option value="electric">electric</option>
-          <option value="ice">ice</option>
-          <option value="fighting">fighting</option>
-          <option value="poison">poison</option>
-          <option value="ground">ground</option>
+          <option value="fire">fuego</option>
+          <option value="water">agua</option>
+          <option value="grass">planta</option>
+          <option value="electric">eléctrico</option>
+          <option value="ice">hielo</option>
+          <option value="fighting">lucha</option>
+          <option value="poison">veneno</option>
+          <option value="ground">tierra</option>
           {/* Agrega más opciones según sea necesario */}
         </select>
       </div>
