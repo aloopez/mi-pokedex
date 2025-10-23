@@ -41,8 +41,6 @@ app.get('/pokemon/:nombre', async (req, res) => {
   }
 });
 
-// backend/app.js
-
 // ... (las otras rutas están bien)
 
 app.get('/pokemon/tipo/:tipo', async (req, res) => {
@@ -54,16 +52,16 @@ app.get('/pokemon/tipo/:tipo', async (req, res) => {
 
    // 2. Extraemos y transformamos la lista de pokémon
    // La API de tipo devuelve { pokemon: [ { pokemon: { name: '..', url: '..' } }, ... ] }
-    // Necesitamos extraer solo el objeto { name: '..', url: '..' } de cada elemento
-    const pokemonesTransformados = respuestaApi.data.pokemon.map(p => p.pokemon);
+     // Necesitamos extraer solo el objeto { name: '..', url: '..' } de cada elemento
+    const pokemonesTransformados = respuestaApi.data.pokemon.map(p => p.pokemon);
 
-    // 3. Enviamos los datos en el mismo formato que tu ruta /pokemon
-    res.json({ pokemonesTransformados }); // <--- ¡AQUÍ ESTÁ EL ARREGLO!
+     // 3. Enviamos los datos en el mismo formato que tu ruta /pokemon
+    res.json({ pokemonesTransformados }); // <--- ¡AQUÍ ESTÁ EL ARREGLO!
 
-  } catch (error) {
-    console.error("Error al obtener Pokémon por tipo:", error);
-    res.status(500).json({ mensaje: "No se pudieron obtener los Pokémon por tipo" });
-  }
+  } catch (error) {
+    console.error("Error al obtener Pokémon por tipo:", error);
+    res.status(500).json({ mensaje: "No se pudieron obtener los Pokémon por tipo" });
+  }
 });
 
 // ... (el resto del archivo)

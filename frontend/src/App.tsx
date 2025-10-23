@@ -74,14 +74,14 @@ function App() {
         />
         <select className="type-filter" onChange={(e) => setTipo(e.target.value)}>
           <option value="">Seleccionar tipo</option>
-          <option value="fire">fuego</option>
-          <option value="water">agua</option>
-          <option value="grass">planta</option>
-          <option value="electric">eléctrico</option>
-          <option value="ice">hielo</option>
-          <option value="fighting">lucha</option>
-          <option value="poison">veneno</option>
-          <option value="ground">tierra</option>
+          <option value="fire">Fuego</option>
+          <option value="water">Agua</option>
+          <option value="grass">Planta</option>
+          <option value="electric">Eléctrico</option>
+          <option value="ice">Hielo</option>
+          <option value="fighting">Lucha</option>
+          <option value="poison">Veneno</option>
+          <option value="ground">Tierra</option>
           {/* Agrega más opciones según sea necesario */}
         </select>
       </div>

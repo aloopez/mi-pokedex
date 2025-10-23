@@ -89,11 +89,20 @@
 }
 
 .type-filter {
-  margin-left: auto;
-  padding: 5px 10px;
-  border-radius: 20px;
+ display: block;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto 2rem auto;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 50px; /* Bordes redondeados */
   border: 1px solid #dcdcdc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  font-size: 0.9rem;
   transition: all 0.2s ease-in-out;
+}
+.type-filter:focus {
+  outline: none;
+  border-color: #88a5d6;
+  box-shadow: 0 4px 15px rgba(136, 165, 214, 0.4);
 }
